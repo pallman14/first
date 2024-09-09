@@ -4,6 +4,9 @@
 
 #include <cstdio>
 #include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
 #include "first.h"
 
 using namespace std;
