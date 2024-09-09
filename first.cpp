@@ -8,8 +8,18 @@
 
 using namespace std;
 
-
-
-// Read in Grammar rules file
+// Read in Grammar rules file.
+productions::readGrammar() {
+}
 
 // Put productions into data structure (maybe a dictionary, array, vector, or linked list?)
+productions::storeProductions() {
+}
+
+// Print the productions that have been processed and stored.
+productions::printProductions() {
+}
+	
+
+
+
