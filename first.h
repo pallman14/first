@@ -11,7 +11,17 @@ class productions {
 		
 
     public:
+	void readGrammar();
+	// Pre-conditions:
+	// Post-conditions:
 
+	void storeProductions();
+	// Pre-conditions:
+	// Post-conditions:
+
+	void printProductions();
+	// Pre-conditions:
+	// Post-conditions:
 };
 
 #endif
