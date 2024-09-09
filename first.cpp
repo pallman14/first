@@ -2,7 +2,11 @@
 // program: first
 // File: first.cpp
 
+#include <cstdio>
+#include <iostream>
+#include "first.h"
 
+using namespace std;
 
 
 
