@@ -1,9 +1,16 @@
-// Chris, Gorana, Lian, and Price  9/6/2024
-// program: first
-// File: firstMain.cpp
+#include "Grammar.h"
 
-#include <cstdio>
-#include <iostream>
-#include "first.h"
-
-using namespace std;
+int main() {
+    const char* filename = "grammar.txt";
+    
+    // Create a Grammar object
+    Grammar grammar(filename);
+    
+    // Print the lists and start symbol
+    grammar.printStartSymbol();    // Print the start symbol
+    grammar.printNonTerminals();   // Print non-terminals
+    grammar.printTerminals();      // Print terminals
+    grammar.printGrammar();        // Print production rules
+    
+    return 0;
+}

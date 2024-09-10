@@ -1,0 +1,7 @@
+S -> aBa
+S -> bCb
+B -> a
+B -> b
+C -> def
+C -> fed
+C -> dog

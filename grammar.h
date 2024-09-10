@@ -1,35 +1,31 @@
-// Chris, Gorana, Lian, and Price  9/6/2024
-// program: first
-// File: first.h
+#ifndef GRAMMAR_H
+#define GRAMMAR_H
 
+#include "Production.h"
+#include "NonTerminal.h"
+#include "Terminal.h"
+#include <iostream>
+#include <fstream>
 
-#ifndef grammar_H
-#define grammar_H
+using namespace std;
 
-#include <string>
-#include <unordered_map>
-#include <vector>
+class Grammar {
+private:
+    Production** productions;
+    NonTerminal** nonTerminals;
+    Terminal** terminals;
+    int numProductions;
+    int numNonTerminals;
+    int numTerminals;
+    NonTerminal* startSymbol;
 
-class productions {
-    private:
-	// Dictionary to store productions
-	std::unordered_map<char, std::vector<std::string>> productionRules;  
-
-    public:
-	// Reads grammar from a file
-	void readGrammar();
-	// Pre-conditions:
-	// Post-conditions:
-
-	// Stores productions in a data structure (dictionary?)
-	void storeProductions();
-	// Pre-conditions:
-	// Post-conditions:
-
-	// Prints the stored productions
-	void printProductions();
-	// Pre-conditions:
-	// Post-conditions:
+public:
+    Grammar(const char* filename);
+    void printGrammar();               // Prints the production rules
+    void printTerminals();             // Prints the list of terminals
+    void printNonTerminals();          // Prints the list of non-terminals
+    void printStartSymbol();           // Prints the start symbol
+    ~Grammar();
 };
 
 #endif
