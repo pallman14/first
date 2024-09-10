@@ -3,8 +3,8 @@
 // File: first.h
 
 
-#ifndef first_H
-#define first_H
+#ifndef grammar_H
+#define grammar_H
 
 #include <string>
 #include <unordered_map>
