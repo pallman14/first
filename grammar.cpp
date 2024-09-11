@@ -44,6 +44,7 @@ Grammar::Grammar(const char* filename) {
         // Check if the LHS is already in the list of non-terminals
         bool foundNonTerminal = false;
         for (int i = 0; i < numNonTerminals; ++i) {
+            // We use string compare to check this
             if (strcmp(nonTerminals[i]->getSymbol(), lhs) == 0) {
                 // Non-terminal already exists in the list
                 foundNonTerminal = true;
