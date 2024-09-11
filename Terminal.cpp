@@ -1,3 +1,8 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: Terminal.cpp
+
 #include "Terminal.h"
 
 // Initializes the terminal symbol with the provided string.
