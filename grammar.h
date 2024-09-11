@@ -1,3 +1,10 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: grammar.h
+// The Grammar class represents a context-free grammar, storing production rules, terminals, non-terminals, and the start symbol.
+// It stores the overall structure of a grammar, including productions, non-terminals, terminals, and start symbols.
+
 #ifndef GRAMMAR_H
 #define GRAMMAR_H
 
