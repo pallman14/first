@@ -1,3 +1,10 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: Terminal.h
+// This class represents a terminal symbol in the grammar.
+// Stores a terminal symbol and allows access to it. 
+
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
