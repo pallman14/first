@@ -1,3 +1,8 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: NonTerminal.h
+
 #include "NonTerminal.h"
 
 // Initializes a NonTerminal object with the given symbol.
