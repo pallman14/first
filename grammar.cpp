@@ -1,3 +1,8 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: grammar.cpp
+
 #include "Grammar.h"
 
 // Constructor: Reads the grammar from a file and initializes the grammar components 
