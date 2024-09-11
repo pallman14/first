@@ -1,3 +1,8 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: Production.cpp
+
 #include "Production.h"
 
 // Constructor for the Production class
