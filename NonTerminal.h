@@ -1,3 +1,11 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: NonTermninal.h
+// This class represents a non-terminal symbol in a grammar.
+// It stores a non-terminal symbol and allows acces to it. 
+
+
 #ifndef NONTERMINAL_H
 #define NONTERMINAL_H
 
