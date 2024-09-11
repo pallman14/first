@@ -1,3 +1,10 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: Production.h
+// The Production class represents a single production rule of the form A -> α, where A is a non-terminal and α is a string.
+// It stores the LHS and RHS of a production rule.
+
 #ifndef PRODUCTION_H
 #define PRODUCTION_H
 
