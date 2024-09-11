@@ -1,7 +1,7 @@
 // Chris, Gorana, Lian, and Price
 // GCSC544
 // Project: first
-// File: NonTerminal.h
+// File: NonTerminal.cpp
 
 #include "NonTerminal.h"
 
