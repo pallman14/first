@@ -1,3 +1,10 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: non_terminal.h
+// This file has a constructor to initialize the non-terminal object. Destructor to
+// clear memory. And an a function to add a production to the list of productions.
+
 #ifndef NONTERMINAL_H
 #define NONTERMINAL_H
 
