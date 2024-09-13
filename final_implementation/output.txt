@@ -1,0 +1,6 @@
+Start Symbol: S
+Non-Terminals: { S B C }
+Terminals: { a b d e f o g }
+S -> aBa | bCb;
+B -> C | b;
+C -> def | fed | dog;

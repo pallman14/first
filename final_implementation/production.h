@@ -7,12 +7,10 @@ using namespace std;
 
 class production{
     public:
-        string stmt;
+        string stmt; //production statement is stored as a string
         production *next;
 
-        production(string stmt);
-
-        ~production();
+        production(string stmt); //constructor for production class
 };
 
 #endif

@@ -13,11 +13,11 @@ class non_terminal{
         production *p_root;
         non_terminal *next;
 
-        non_terminal(string sym);
+        non_terminal(string sym); //constructor for non_terminal class
 
-        ~non_terminal();
+        ~non_terminal(); //destructor because we store productions
 
-        void addProduction(string stmt);
+        void addProduction(string stmt); //function to add production string
 };
 
 #endif

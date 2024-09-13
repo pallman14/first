@@ -7,12 +7,10 @@ using namespace std;
 
 class terminal {
     public:
-        string sym;
-        terminal *next;
+        string sym; //symbol for the terminal
+        terminal *next; //pointer to next terminal node
 
-        terminal(string symbol);
-
-        ~terminal();
+        terminal(string symbol); //constructor for terminal class
 };
 
 #endif

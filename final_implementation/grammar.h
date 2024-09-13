@@ -11,11 +11,10 @@ using namespace std;
 
 class grammar {
     private:
-        non_terminal *n_root;
-        terminal *t_root;
-        non_terminal *start_symbol;
+        non_terminal *n_root; //define the root for the non-terminal linked list
+        terminal *t_root; //define the root for the terminal linked list
+        non_terminal *start_symbol; //define the start-symbols linked list
 
-        // bool is_terminal(string c);
         bool is_non_terminal(string c);
         bool add_non_terminal(char c);
         bool add_terminal(char c);
@@ -40,8 +39,5 @@ class grammar {
 
         void display_start_symbol();
 };
-
-
-
 
 #endif

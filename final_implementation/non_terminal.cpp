@@ -24,6 +24,6 @@ void non_terminal::addProduction(string stmt){
         while (p_curr->next != NULL){
             p_curr = p_curr->next;
         }
-        p_curr-> next = p_new;
+        p_curr->next = p_new;
     }
 }
