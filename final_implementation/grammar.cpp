@@ -1,3 +1,8 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: grammar.cpp
+
 #include "grammar.h"
 
 //constructor for grammar class
