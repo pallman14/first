@@ -1,3 +1,11 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: main.cpp
+// This file has accepts the argument from the command line, and initializes
+// a grammar object, and then displays the start symbol, non terminals, 
+// terminals, and production rules.
+
 #include "grammar.h"
 
 int main(int argc, char *argv[]) {

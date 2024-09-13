@@ -1,3 +1,9 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: production.h
+// This file has a constructor to initialize the production object
+
 #ifndef PRODUCTION_H
 #define PRODUCTION_H
 

@@ -1,3 +1,9 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: terminal.h
+// This file has a constructor to initialize the terminal object.
+
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
