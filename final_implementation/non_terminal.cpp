@@ -1,3 +1,8 @@
+// Chris, Gorana, Lian, and Price
+// GCSC544
+// Project: first
+// File: non_terminal.cpp
+//
 #include "non_terminal.h"
 
 non_terminal::non_terminal(string sym){
