@@ -6,7 +6,10 @@
 // terminals, and their corresponding productions, allowing for grammar parsing 
 // and printing results.
 
+#define MAX_FIRST_SET_SIZE 100  // Define a maximum size for the FIRST set array
+
 #include "grammar.h"
+
 
 //constructor for grammar class
 // Initializes the grammar object with empty non-terminal and termnial roots and
@@ -31,10 +34,10 @@ grammar::~grammar(){
 }
 
 //helper function remove white spaces
-void remove_white_spaces(std::string &str) {
+void remove_white_spaces(string &str) {
     size_t pos;
     // Loop through the string and remove all spaces (' ')
-    while ((pos = str.find(' ')) != std::string::npos) {
+    while ((pos = str.find(' ')) != string::npos) {
         // Erase one character at the position of the space
         str.erase(pos, 1); 
     }
@@ -351,20 +354,30 @@ void grammar::clean_terminal_list() {
     }
 }
 
-// Function to find FIRST set for a given symbol (terminal or non-terminal)
-set<string> grammar::find_first(string symbol) {
-    set<string> first_set;
+// Helper function to check if a symbol is already in the array
+bool symbol_in_first_set(string first_set[], int size, const string &symbol) {
+    for (int i = 0; i < size; i++) {
+        if (first_set[i] == symbol) {
+            return true;  // Symbol already in the set
+        }
+    }
+    return false;  // Symbol not in the set
+}
 
-    // Step 1: If the symbol is a terminal (not a non-terminal), return it in the set
+// Function to find the FIRST set for a given symbol
+int grammar::find_first(const string &symbol, string first_set[], int &size) {
+    // Step 1: If the symbol is a terminal (not a non-terminal), return it in the array
     if (!is_non_terminal(symbol)) {
-        first_set.insert(symbol);
-        return first_set;
+        if (!symbol_in_first_set(first_set, size, symbol)) {
+            first_set[size++] = symbol;  // Add terminal symbol to the FIRST set
+        }
+        return size;
     }
 
     // Step 2: If the symbol is a non-terminal, find its productions
     non_terminal *current_nt = n_root;
     while (current_nt) {
-        if (current_nt->sym == symbol) {
+        if (current_nt->sym == symbol) {  // Compare non-terminal symbols
             production *prod = current_nt->p_root;
 
             // Step 3: Loop through the productions of this non-terminal
@@ -373,59 +386,65 @@ set<string> grammar::find_first(string symbol) {
                 for (size_t i = 0; i < prod->stmt.length(); ++i) {
                     string current_symbol(1, prod->stmt[i]); // Convert char to string
 
-                    // Step 4: If it's epsilon, add it to the set
+                    // Step 4: If it's epsilon, add it to the array
                     if (current_symbol == "&") {
-                        first_set.insert("&");
-                        break; // No need to check further symbols
+                        if (!symbol_in_first_set(first_set, size, "&")) {
+                            first_set[size++] = "&";
+                        }
+                        break;  // No need to check further symbols
                     }
 
                     // Step 5: Recursively call find_first on the current symbol
-                    set<string> first_of_current = find_first(current_symbol);
-                    first_set.insert(first_of_current.begin(), first_of_current.end());
+                    string temp_first_set[MAX_FIRST_SET_SIZE];  // Temporary array for the FIRST set
+                    int temp_size = 0;
+                    find_first(current_symbol, temp_first_set, temp_size);
+
+                    // Insert elements from temp_first_set into first_set
+                    for (int j = 0; j < temp_size; j++) {
+                        if (!symbol_in_first_set(first_set, size, temp_first_set[j])) {
+                            first_set[size++] = temp_first_set[j];
+                        }
+                    }
 
                     // Step 6: If epsilon is not in the FIRST set, stop processing further symbols
-                    if (first_of_current.find("&") == first_of_current.end()) {
-                        break; // Stop checking further symbols in the RHS
+                    if (!symbol_in_first_set(temp_first_set, temp_size, "&")) {
+                        break;  // Stop checking further symbols in the RHS
                     }
                 }
 
                 // Move to the next production
                 prod = prod->next;
             }
-            break; // Break out of the non-terminal loop
+            break;  // Break out of the non-terminal loop
         }
-        current_nt = current_nt->next; // Move to the next non-terminal
+        current_nt = current_nt->next;  // Move to the next non-terminal
     }
 
-    return first_set;
+    return size;
 }
-
-
-
-
 
 // Function to print the FIRST sets for all non-terminals and terminals
 void grammar::print_first_sets() {
+    string first_set[MAX_FIRST_SET_SIZE];  // Array to store the FIRST set
+    int size;
+
     // Print FIRST sets for non-terminals
     non_terminal *current_nt = n_root;
     while (current_nt) {
-        set<string> first_set = find_first(current_nt->sym);
+        size = 0;  // Reset the size for each non-terminal
+        find_first(current_nt->sym, first_set, size);
         cout << "FIRST(" << current_nt->sym << ") = { ";
-        for (const string &symbol : first_set) {
-            cout << symbol << " ";
+        for (int i = 0; i < size; i++) {
+            cout << first_set[i] << " ";
         }
         cout << "}" << endl;
-        current_nt = current_nt->next; // Move to the next non-terminal
+        current_nt = current_nt->next;  // Move to the next non-terminal
     }
 
     // Print FIRST sets for terminals
     terminal *current_t = t_root;
     while (current_t) {
         cout << "FIRST(" << current_t->sym << ") = { " << current_t->sym << " }" << endl;
-        current_t = current_t->next; // Move to the next terminal
+        current_t = current_t->next;  // Move to the next terminal
     }
 }
-
-
-
-

@@ -1,1 +1,23 @@
-Usage: ./main <grammar file path>
+Start Symbol: S
+Non-Terminals: { S B m A C }
+Terminals: { a b z q n o d e f g }
+S -> aBa | bCb;
+B -> C | b;
+m -> z | a | q;
+A -> b | n | o | B | m;
+C -> def | fed | dog;
+FIRST(S) = { a b }
+FIRST(B) = { d f b }
+FIRST(m) = { z a q }
+FIRST(A) = { b n o d f z a q }
+FIRST(C) = { d f }
+FIRST(a) = { a }
+FIRST(b) = { b }
+FIRST(z) = { z }
+FIRST(q) = { q }
+FIRST(n) = { n }
+FIRST(o) = { o }
+FIRST(d) = { d }
+FIRST(e) = { e }
+FIRST(f) = { f }
+FIRST(g) = { g }

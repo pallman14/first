@@ -70,7 +70,8 @@ class grammar {
         // Post-condtions: Removes any terminals that are also present as non-terminals.
 
         // Finds First() for every non-terminal and terminal
-        set<string> find_first(string symbol);;
+        // set<string> find_first(string symbol);
+        int find_first(const std::string &symbol, std::string first_set[], int &size);
         // Pre-conditions: 
         // Post-condtions: 
     public:

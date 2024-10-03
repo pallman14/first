@@ -1,6 +1,6 @@
 # Set the C++ compiler
-CXX = clang++  # Change this to clang++ if you want to use Clang
-# CXX = g++   # Uncomment this line to use g++
+# CXX = clang++  # Change this to clang++ if you want to use Clang
+CXX = g++   # Uncomment this line to use g++
 
 # Compiler flags
 CXXFLAGS = -Wall -g -std=c++17
