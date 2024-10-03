@@ -1,0 +1,4 @@
+S -> aBa | bCb ;
+B -> C | b ;
+C -> def | fed ;
+C -> dog ;
