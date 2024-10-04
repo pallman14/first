@@ -366,84 +366,86 @@ bool symbol_in_first_set(string first_set[], int size, const string &symbol) {
 
 // Function to find the FIRST set for a given symbol
 int grammar::find_first(const string &symbol, string first_set[], int &size) {
-    // Step 1: If the symbol is a terminal (not a non-terminal), return it in the array
+    // If the symbol is a terminal, we directly add it to the FIRST set
     if (!is_non_terminal(symbol)) {
         if (!symbol_in_first_set(first_set, size, symbol)) {
             first_set[size++] = symbol;  // Add terminal symbol to the FIRST set
         }
-        return size;
+        return size;  // Return the size of the FIRST set
     }
 
-    // Step 2: If the symbol is a non-terminal, find its productions
+    // If the symbol is a non-terminal, find its productions
+    // Traverse the list of non-terminals to locate the symbol's associated production rules
     non_terminal *current_nt = n_root;
     while (current_nt) {
-        if (current_nt->sym == symbol) {  // Compare non-terminal symbols
+        if (current_nt->sym == symbol) {  // Compare non-terminal symbols to find a match
             production *prod = current_nt->p_root;
 
-            // Step 3: Loop through the productions of this non-terminal
+            // Loop through the productions of this non-terminal
             while (prod) {
-                // Loop through the RHS of the production
+                // Traverse through the right-hand side of each production
                 for (size_t i = 0; i < prod->stmt.length(); ++i) {
-                    string current_symbol(1, prod->stmt[i]); // Convert char to string
+                    string current_symbol(1, prod->stmt[i]); // Convert character to string for each symbol
 
-                    // Step 4: If it's epsilon, add it to the array
+                    // If the current symbol is epsilon, add it to the FIRST set
                     if (current_symbol == "&") {
                         if (!symbol_in_first_set(first_set, size, "&")) {
-                            first_set[size++] = "&";
+                            first_set[size++] = "&";  // Add epsilon to the FIRST set
                         }
-                        break;  // No need to check further symbols
+                        break;  // No need to check further symbols since epsilon was found
                     }
 
-                    // Step 5: Recursively call find_first on the current symbol
-                    string temp_first_set[MAX_FIRST_SET_SIZE];  // Temporary array for the FIRST set
-                    int temp_size = 0;
-                    find_first(current_symbol, temp_first_set, temp_size);
+                    // Recursively call find_first on the current symbol
+                    string temp_first_set[MAX_FIRST_SET_SIZE];  // Temporary array to store the FIRST set of the current symbol
+                    int temp_size = 0;  // Initialize size for the temporary set
+                    find_first(current_symbol, temp_first_set, temp_size);  // Recursive call to find the FIRST set
 
                     // Insert elements from temp_first_set into first_set
                     for (int j = 0; j < temp_size; j++) {
                         if (!symbol_in_first_set(first_set, size, temp_first_set[j])) {
-                            first_set[size++] = temp_first_set[j];
+                            first_set[size++] = temp_first_set[j];  // Add elements from temp_first_set
                         }
                     }
 
-                    // Step 6: If epsilon is not in the FIRST set, stop processing further symbols
+                    // If epsilon is not in FIRST set, we stop processing the rest of the symbols in the RHS
                     if (!symbol_in_first_set(temp_first_set, temp_size, "&")) {
-                        break;  // Stop checking further symbols in the RHS
+                        break;  // Stop checking further symbols if no epsilon is found
                     }
                 }
 
-                // Move to the next production
+                // Move to the next production for the non-terminal
                 prod = prod->next;
             }
-            break;  // Break out of the non-terminal loop
+            break;  // Break out of the non-terminal loop after processing its productions
         }
         current_nt = current_nt->next;  // Move to the next non-terminal
     }
 
-    return size;
+    return size;  // Return the size of the FIRST set
 }
 
 // Function to print the FIRST sets for all non-terminals and terminals
 void grammar::print_first_sets() {
-    string first_set[MAX_FIRST_SET_SIZE];  // Array to store the FIRST set
-    int size;
+    string first_set[MAX_FIRST_SET_SIZE];  // Array to store the FIRST set of each symbol
+    int size;  // Variable to store the size of the FIRST set
 
     // Print FIRST sets for non-terminals
     non_terminal *current_nt = n_root;
     while (current_nt) {
-        size = 0;  // Reset the size for each non-terminal
-        find_first(current_nt->sym, first_set, size);
-        cout << "FIRST(" << current_nt->sym << ") = { ";
+        size = 0;  // Reset the size 
+        find_first(current_nt->sym, first_set, size);  // Find the FIRST set for the current non-terminal
+        cout << "FIRST(" << current_nt->sym << ") = { ";  // Output the non-terminal
         for (int i = 0; i < size; i++) {
-            cout << first_set[i] << " ";
+            cout << first_set[i] << " ";  // Output each element in the FIRST set
         }
-        cout << "}" << endl;
+        cout << "}" << endl;  // Close the output for the current non-terminal
         current_nt = current_nt->next;  // Move to the next non-terminal
     }
 
     // Print FIRST sets for terminals
     terminal *current_t = t_root;
     while (current_t) {
+        // For terminals, the FIRST set is just the terminal itself
         cout << "FIRST(" << current_t->sym << ") = { " << current_t->sym << " }" << endl;
         current_t = current_t->next;  // Move to the next terminal
     }
