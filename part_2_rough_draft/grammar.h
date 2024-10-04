@@ -70,10 +70,12 @@ class grammar {
         // Post-condtions: Removes any terminals that are also present as non-terminals.
 
         // Finds First() for every non-terminal and terminal
-        // set<string> find_first(string symbol);
         int find_first(const std::string &symbol, std::string first_set[], int &size);
-        // Pre-conditions: 
-        // Post-condtions: 
+        // Pre-conditions: Must be a valid symbol from the grammar, either a terminal or non-terminal.
+        // Post-conditions: The function recursively finds the FIRST set for the provided symbol. If the symbol is a terminal, 
+        // it adds the terminal itself to first_set[]. If the symbol is a non-terminal, it adds the appropriate symbols from 
+        // its productions. It also modifies size to reflect the number of elements in the set.
+
     public:
         // Constructor to initialize the grammar from a file.
         grammar(string filepath);
@@ -108,8 +110,8 @@ class grammar {
 
         // Displays all the FIRST() found for terminals and non terminals
         void print_first_sets();
-        // Pre-conditions: 
-        // Post-condtions: 
+        // Pre-conditions: The grammar must have been successfully parsed and populated with non-terminals, terminals, and production rules.
+        // Post-condtions: Computes and prints the FIRST set for each non-terminal and terminal in the grammar.
 
 };
 
